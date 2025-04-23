@@ -1,0 +1,326 @@
+### Hyprland Applications ###
+# Essential System Utilities
+blueberry
+ffmpegthumbnailer
+gnome-disk-utility
+hyprlock
+network-manager-applet
+nm-connection-editor
+numlockx
+pavucontrol
+playerctl
+tumbler
+blueman
+brightnessctl
+
+# File Manager and Plugins
+dolphin
+
+# Hyprland Core Components
+hyprland
+hyprcursor
+hypridle
+hyprlock
+hyprutils
+hyprshade
+hyprwayland-scanner
+xdg-desktop-portal-hyprland
+
+# Hyprland Additional Utilities
+nwg-displays
+nwg-dock-hyprland
+nwg-panel
+#swaylock-effects-git
+wlogout
+grimblast-git
+hyprpicker
+slurp
+swappy
+cliphist
+
+# Wayland Native Replacements
+#alacritty
+fuzzel
+kitty
+dunst
+grim
+mako
+rofi-wayland
+slurp
+swayidle
+swaylock
+waybar
+wofi
+hyde-cli-git
+
+# Legacy Applications
+mugshot
+pix
+vlc
+kate
+polkit-gnome
+#pacman-contrib
+#python-pyamdgpuinfo
+#parallel
+#jq
+qt5-imageformats
+#kde-cli-tools
+
+# Games
+gnuchess
+gnome-mines
+aisleriot
+
+# Browsers
+brave-browser
+
+# Development Tools
+autoconf
+automake
+make
+
+# Fonts
+>extra noto-fonts-emoji
+>extra ttf-droid
+>extra ttf-inconsolata
+>extra ttf-indic-otf
+>extra ttf-liberation
+adobe-source-han-sans-cn-fonts
+adobe-source-han-sans-jp-fonts
+adobe-source-han-sans-kr-fonts
+adobe-source-sans-pro-fonts
+cantarell-fonts # Installed as gnome-themes-standard dependency
+noto-fonts-lite # New default font
+noto-nerd-fonts-lite
+# terminus-font
+# ttf-caladea
+# ttf-carlito
+# ttf-dejavu
+# ttf-fira-code
+# ttf-icomoon-feather
+# ttf-liberation
+ttf-roboto
+ttf-roboto-mono
+ttf-roboto-slab
+
+# Office
+libreoffice-fresh-pt-br
+
+# Themes and Icons
+adw-gtk-theme
+bibata-cursor-theme
+#breeze-icons
+gtk-engine-murrine
+gtk-engines
+qadwaitadecorations-qt6
+qt6-svg
+bigicons-papient
+lsd
+swww
+nwg-look
+qt5ct
+qt6ct
+kvantum
+kvantum-qt5
+qt5-wayland
+qt6-wayland
+hyde-cli-git
+hyprpaper
+comm-wallpapers-hyprland
+
+# Utilities
+biglinux-settings
+comm-wallpapers-hyprland
+comm-hyprland-config
+ds4-disable-led
+retroarch-tweaks
+fastfetch
+ark
+imagemagick
+ffmpegthumbs
+libnotify
+udiskie
+biglinux-vim-config
+kate
+git
+
+# System Configuration
+>extra python-pillow
+>extra python-pip
+>extra python-pyqt5
+appimagelauncher
+appmenu-gtk-module
+auto-tweaks-browser # Pacote Biglinux
+biglinux-mime
+biglinux-webapps
+bigocrpdf
+dmidecode # for inxi -m output
+espeak-ng
+htop
+inxi
+libappindicator-gtk3
+orca
+p7zip  # 7Z format support
+perl-file-mimeinfo
+pipewire-biglinux-config
+powertop
+python-pysmbc # SMB browser support
+speech-dispatcher
+tts-biglinux
+unarchiver  # RAR format support
+xdg-desktop-portal-gtk
+xdg-user-dirs-gtk
+zensu
+
+## Display manager
+sddm
+sddm-theme-biglinux
+
+# System Utilities
+>extra fwupd
+android-tools
+biglinux-systemd-swap
+# biglinux-updates-tweaks
+bluez-cups
+compsize
+debtap-mod
+hplip
+ipp-usb
+iso2usb
+manjaro-application-utility
+manjaro-printer
+pamac-updates-menu
+pamac-flatpak-plugin
+qt5-quickcontrols2
+#qt6-wayland
+rpmtoarch
+sane-airscan
+splix
+system-config-printer
+system-config-printer-jobs
+thermald
+virtualbox-guest-utils
+
+# Wayland
+#wayland-protocols
+#wayland-utils
+egl-wayland
+
+# Miscellaneous
+libdnet
+gdk-pixbuf-xlib
+uriparser
+libmspack
+
+# Additional Packages
+fatresize
+gamemode
+grilo-plugins
+gvfs
+gvfs-afc
+gvfs-dnssd
+gvfs-goa
+gvfs-google
+gvfs-gphoto2
+gvfs-mtp
+gvfs-nfs
+gvfs-onedrive
+gvfs-smb
+gvfs-wsdd
+manjaro-settings-samba
+mtools
+mtpfs
+rustdesk-bin
+steam
+udiskie
+
+## Virtual Machines
+open-vm-tools
+qemu-guest-agent
+libdnet
+gdk-pixbuf-xlib
+uriparser
+libmspack
+xf86-input-vmmouse
+compsize
+xf86-input-synaptics
+mtools
+fatresize
+thermald
+
+# Network Tools
+modemmanager
+network-manager-disable-random-mac
+network-manager-prefer-ipv4-dns
+networkmanager-openvpn
+networkmanager-pptp
+networkmanager-vpnc
+nss-mdns # NSS support for mDNS (optdepend for avahi)
+ntp
+open-vm-tools
+openresolv
+openssh
+qemu-guest-agent
+sysctl-network
+usb_modeswitch
+
+# Udev Rules
+adafruit-boards-udev
+allow-input-accelerometer-udev
+apple-superdrive-udev
+avrisp-udev
+bitbox-udev
+btchip-udev
+crazyflie-udev
+crazyradio-udev
+duckypad-udev
+game-devices-udev
+keepkey-udev
+mooltipass-udev
+nintendo-udev
+numworks-udev
+nx-udev
+onlykey-udev
+openrgb-udev-rules
+osc-udev-storage
+signal-hound-udev
+stadia-controller-udev
+trezor-udev
+usb-dirty-pages-udev
+usbasp-udev
+usbtinyisp-udev
+
+# Virtualization
+bluez-utils
+sshfs  # remote filesystem browser
+
+# Multilib
+>multilib lib32-libva-intel-driver
+>multilib lib32-mesa
+>multilib lib32-mesa-vdpau
+#>multilib lib32-libva-vdpau-driver
+>multilib lib32-mesa-utils
+mesa
+lib32-fontconfig
+lib32-gettext
+lib32-glu
+lib32-lcms2
+lib32-libcups
+lib32-libice
+lib32-libjpeg6-turbo
+lib32-libjpeg6-turbo
+lib32-libltdl
+lib32-libpcap
+lib32-libpng12
+lib32-libpulse
+lib32-libxcomposite
+lib32-libxinerama
+lib32-libxrandr
+lib32-libxslt
+lib32-mpg123
+lib32-nss-mdns
+lib32-openal
+lib32-pipewire-jack
+lib32-sdl12-compat
+lib32-sdl2-compat
+lib32-v4l-utils

@@ -1,0 +1,355 @@
+#!/bin/bash
+#################################################
+#  Authors: 
+#    - Bruno Goncalves (www.biglinux.com.br) 
+#    - Rafael Ruscher (rruscher@gmail.com)  
+#  Date: 2022/08/19
+#  
+#  Description: BigLinux Control Center - Keyboard Layout Configuration
+#  
+#  License: GPL V2 or greater
+#################################################
+
+# System language configuration
+export LANGUAGE=$language.UTF-8
+export LANG=$language.UTF-8
+
+# Save language and keyboard preferences
+echo "$language" > /tmp/big_language
+echo "$keyboard" > /tmp/big_keyboard
+
+# Update system environment variables
+sudo tee -a /etc/environment &>/dev/null << EOF
+LANGUAGE=$language.UTF-8
+LANG=$language.UTF-8
+LC_MESSAGES=$language.UTF-8
+EOF
+
+# Configure system timezone and time sync
+timedatectl set-timezone $timezone </dev/null &>/dev/null &
+timedatectl set-ntp 1 </dev/null &>/dev/null &
+
+# Set system locale
+localectl set-locale ${language}.UTF-8 </dev/null &>/dev/null &
+
+# Run checksum verification in background with low priority
+nice -n+20 ionice -c 3 ./biglinux-verify-md5sum.sh > /dev/null 2>&1 &
+
+# Configure translation
+export TEXTDOMAINDIR="/usr/share/locale"
+export TEXTDOMAIN=biglinux-livecd
+
+# Get keyboard layout based on language
+case "$language" in
+    "pt_BR") keyboard="br" ;;
+    "en_US"|"en_AU"|"en_CA"|"en_GB"|"en_IE"|"en_NZ"|"en_PH"|"en_ZA"|"en_ZW") keyboard="us" ;;
+    "es_ES"|"es_AR"|"es_BO"|"es_CL"|"es_CO"|"es_CR"|"es_DO"|"es_EC"|"es_SV"|"es_GT"|"es_HN"|"es_MX"|"es_NI"|"es_PA"|"es_PY"|"es_PE"|"es_PR"|"es_UY"|"es_VE") keyboard="es" ;;
+    "be_BY") keyboard="by" ;;
+    "bg_BG") keyboard="bg" ;;
+    "zh_CN"|"zh_HK"|"zh_SG"|"zh_TW") keyboard="cn" ;;
+    "hr_HR") keyboard="hr" ;;
+    "cs_CZ") keyboard="cz" ;;
+    "da_DK") keyboard="dk" ;;
+    "nl_BE") keyboard="be" ;;
+    "nl_NL") keyboard="nl" ;;
+    "et_EE") keyboard="ee" ;;
+    "fi_FI") keyboard="fi" ;;
+    "fr_BE") keyboard="be" ;;
+    "fr_CA") keyboard="ca" ;;
+    "fr_CH") keyboard="ch" ;;
+    "fr_FR") keyboard="fr" ;;
+    "fr_LU") keyboard="fr" ;;
+    "de_AT") keyboard="at" ;;
+    "de_CH") keyboard="ch" ;;
+    "de_DE") keyboard="de" ;;
+    "de_LI") keyboard="de" ;;
+    "de_LU") keyboard="de" ;;
+    "el_GR") keyboard="gr" ;;
+    "he_IL") keyboard="il" ;;
+    "hu_HU") keyboard="hu" ;;
+    "is_IS") keyboard="is" ;;
+    "it_IT"|"it_CH") keyboard="it" ;;
+    "ja_JP") keyboard="jp" ;;
+    "ko_KR") keyboard="kr" ;;
+    "nb_NO"|"nn_NO") keyboard="no" ;;
+    "pl_PL") keyboard="pl" ;;
+    "pt_PT") keyboard="pt" ;;
+    "ro_RO") keyboard="ro" ;;
+    "ru_RU") keyboard="ru" ;;
+    "sk_SK") keyboard="sk" ;;
+    "sl_SI") keyboard="si" ;;
+    "sv_SE"|"sv_FI") keyboard="se" ;;
+    "tr_TR") keyboard="tr" ;;
+    "uk_UA") keyboard="ua" ;;
+    *) keyboard="us" ;;  # Default to US layout
+esac
+
+# Set the second keyboard option based on language
+if [ "$language" = "en_US" ] || [ "$language" = "en_GB" ] || [ "$language" = "en_AU" ] || [ "$language" = "en_CA" ] || [ "$language" = "en_IE" ] || [ "$language" = "en_NZ" ] || [ "$language" = "en_PH" ] || [ "$language" = "en_ZA" ] || [ "$language" = "en_ZW" ]; then
+    keyboard2="us(intl)"
+    keyboard2_display="US (INTL)"
+else
+    keyboard2="us"
+    keyboard2_display="US"
+fi
+
+# Translation variable
+# Keyboard messages in different languages
+keyboardMessagePt="Escolha o layout do seu teclado:"
+keyboardMessageEn="Choose your keyboard layout:"
+keyboardMessageEs="Elija la distribución de su teclado:"
+keyboardMessageBe="Выберыце раскладку клавіятуры:"
+keyboardMessageBg="Изберете подредбата на клавиатурата:"
+keyboardMessageZhCn="选择键盘布局："
+keyboardMessageZhHk="選擇鍵盤布局："
+keyboardMessageZhSg="选择键盘布局："
+keyboardMessageZhTw="選擇鍵盤配置："
+keyboardMessageHr="Odaberite raspored tipkovnice:"
+keyboardMessageCs="Vyberte rozložení klávesnice:"
+keyboardMessageDa="Vælg dit tastaturlayout:"
+keyboardMessageNl="Kies uw toetsenbordindeling:"
+keyboardMessageNlBe="Kies uw toetsenbordindeling:"
+keyboardMessageEnAu="Choose your keyboard layout:"
+keyboardMessageEnCa="Choose your keyboard layout:"
+keyboardMessageEnGb="Choose your keyboard layout:"
+keyboardMessageEnIe="Choose your keyboard layout:"
+keyboardMessageEnNz="Choose your keyboard layout:"
+keyboardMessageEnPh="Choose your keyboard layout:"
+keyboardMessageEnZa="Choose your keyboard layout:"
+keyboardMessageEnZw="Choose your keyboard layout:"
+keyboardMessageEt="Valige klaviatuuripaigutus:"
+keyboardMessageFi="Valitse näppäimistöasettelu:"
+keyboardMessageFr="Choisissez la disposition de votre clavier:"
+keyboardMessageFrBe="Choisissez la disposition de votre clavier:"
+keyboardMessageFrCa="Choisissez la disposition de votre clavier:"
+keyboardMessageFrCh="Choisissez la disposition de votre clavier:"
+keyboardMessageFrLu="Choisissez la disposition de votre clavier:"
+keyboardMessageDe="Wählen Sie Ihr Tastaturlayout:"
+keyboardMessageDeAt="Wählen Sie Ihr Tastaturlayout:"
+keyboardMessageDeCh="Wählen Sie Ihr Tastaturlayout:"
+keyboardMessageDeLi="Wählen Sie Ihr Tastaturlayout:"
+keyboardMessageDeLu="Wählen Sie Ihr Tastaturlayout:"
+keyboardMessageEl="Επιλέξτε διάταξη πληκτρολογίου:"
+keyboardMessageHe="בחר את פריסת המקלדת שלך:"
+keyboardMessageHu="Válassza ki a billentyűzetkiosztást:"
+keyboardMessageIs="Veldu lyklaborðsuppsetninguna:"
+keyboardMessageIt="Scegli il layout della tastiera:"
+keyboardMessageItCh="Scegli il layout della tastiera:"
+keyboardMessageJa="キーボードレイアウトを選択してください："
+keyboardMessageKo="키보드 레이아웃을 선택하세요:"
+keyboardMessageNb="Velg tastaturoppsett:"
+keyboardMessageNn="Vel tastaturutforming:"
+keyboardMessagePl="Wybierz układ klawiatury:"
+keyboardMessagePt="Escolha o layout do seu teclado:"
+keyboardMessageRo="Alegeți aspectul tastaturii:"
+keyboardMessageRu="Выберите раскладку клавиатуры:"
+keyboardMessageSk="Vyberte rozloženie klávesnice:"
+keyboardMessageSl="Izberite postavitev tipkovnice:"
+keyboardMessageEsAr="Elija la distribución de su teclado:"
+keyboardMessageEsBo="Elija la distribución de su teclado:"
+keyboardMessageEsCl="Elija la distribución de su teclado:"
+keyboardMessageEsCo="Elija la distribución de su teclado:"
+keyboardMessageEsCr="Elija la distribución de su teclado:"
+keyboardMessageEsDo="Elija la distribución de su teclado:"
+keyboardMessageEsEc="Elija la distribución de su teclado:"
+keyboardMessageEsSv="Elija la distribución de su teclado:"
+keyboardMessageEsGt="Elija la distribución de su teclado:"
+keyboardMessageEsHn="Elija la distribución de su teclado:"
+keyboardMessageEsMx="Elija la distribución de su teclado:"
+keyboardMessageEsNi="Elija la distribución de su teclado:"
+keyboardMessageEsPa="Elija la distribución de su teclado:"
+keyboardMessageEsPy="Elija la distribución de su teclado:"
+keyboardMessageEsPe="Elija la distribución de su teclado:"
+keyboardMessageEsPr="Elija la distribución de su teclado:"
+keyboardMessageEsUy="Elija la distribución de su teclado:"
+keyboardMessageEsVe="Elija la distribución de su teclado:"
+keyboardMessageSv="Välj din tangentbordslayout:"
+keyboardMessageSvFi="Välj din tangentbordslayout:"
+keyboardMessageTr="Klavye düzeninizi seçin:"
+keyboardMessageUk="Виберіть розкладку клавіатури:"
+
+# Select keyboard message based on language
+case "$language" in
+    "pt_BR") SELECT_KEYBOARD="$keyboardMessagePt" ;;
+    "en_US") SELECT_KEYBOARD="$keyboardMessageEn" ;;
+    "es_ES") SELECT_KEYBOARD="$keyboardMessageEs" ;;
+    "be_BY") SELECT_KEYBOARD="$keyboardMessageBe" ;;
+    "bg_BG") SELECT_KEYBOARD="$keyboardMessageBg" ;;
+    "zh_CN") SELECT_KEYBOARD="$keyboardMessageZhCn" ;;
+    "zh_HK") SELECT_KEYBOARD="$keyboardMessageZhHk" ;;
+    "zh_SG") SELECT_KEYBOARD="$keyboardMessageZhSg" ;;
+    "zh_TW") SELECT_KEYBOARD="$keyboardMessageZhTw" ;;
+    "hr_HR") SELECT_KEYBOARD="$keyboardMessageHr" ;;
+    "cs_CZ") SELECT_KEYBOARD="$keyboardMessageCs" ;;
+    "da_DK") SELECT_KEYBOARD="$keyboardMessageDa" ;;
+    "nl_BE") SELECT_KEYBOARD="$keyboardMessageNlBe" ;;
+    "nl_NL") SELECT_KEYBOARD="$keyboardMessageNl" ;;
+    "en_AU") SELECT_KEYBOARD="$keyboardMessageEnAu" ;;
+    "en_CA") SELECT_KEYBOARD="$keyboardMessageEnCa" ;;
+    "en_GB") SELECT_KEYBOARD="$keyboardMessageEnGb" ;;
+    "en_IE") SELECT_KEYBOARD="$keyboardMessageEnIe" ;;
+    "en_NZ") SELECT_KEYBOARD="$keyboardMessageEnNz" ;;
+    "en_PH") SELECT_KEYBOARD="$keyboardMessageEnPh" ;;
+    "en_ZA") SELECT_KEYBOARD="$keyboardMessageEnZa" ;;
+    "en_ZW") SELECT_KEYBOARD="$keyboardMessageEnZw" ;;
+    "et_EE") SELECT_KEYBOARD="$keyboardMessageEt" ;;
+    "fi_FI") SELECT_KEYBOARD="$keyboardMessageFi" ;;
+    "fr_BE") SELECT_KEYBOARD="$keyboardMessageFrBe" ;;
+    "fr_CA") SELECT_KEYBOARD="$keyboardMessageFrCa" ;;
+    "fr_CH") SELECT_KEYBOARD="$keyboardMessageFrCh" ;;
+    "fr_FR") SELECT_KEYBOARD="$keyboardMessageFr" ;;
+    "fr_LU") SELECT_KEYBOARD="$keyboardMessageFrLu" ;;
+    "de_AT") SELECT_KEYBOARD="$keyboardMessageDeAt" ;;
+    "de_CH") SELECT_KEYBOARD="$keyboardMessageDeCh" ;;
+    "de_DE") SELECT_KEYBOARD="$keyboardMessageDe" ;;
+    "de_LI") SELECT_KEYBOARD="$keyboardMessageDeLi" ;;
+    "de_LU") SELECT_KEYBOARD="$keyboardMessageDeLu" ;;
+    "el_GR") SELECT_KEYBOARD="$keyboardMessageEl" ;;
+    "he_IL") SELECT_KEYBOARD="$keyboardMessageHe" ;;
+    "hu_HU") SELECT_KEYBOARD="$keyboardMessageHu" ;;
+    "is_IS") SELECT_KEYBOARD="$keyboardMessageIs" ;;
+    "it_IT") SELECT_KEYBOARD="$keyboardMessageIt" ;;
+    "it_CH") SELECT_KEYBOARD="$keyboardMessageItCh" ;;
+    "ja_JP") SELECT_KEYBOARD="$keyboardMessageJa" ;;
+    "ko_KR") SELECT_KEYBOARD="$keyboardMessageKo" ;;
+    "nb_NO") SELECT_KEYBOARD="$keyboardMessageNb" ;;
+    "nn_NO") SELECT_KEYBOARD="$keyboardMessageNn" ;;
+    "pl_PL") SELECT_KEYBOARD="$keyboardMessagePl" ;;
+    "pt_PT") SELECT_KEYBOARD="$keyboardMessagePt" ;;
+    "ro_RO") SELECT_KEYBOARD="$keyboardMessageRo" ;;
+    "ru_RU") SELECT_KEYBOARD="$keyboardMessageRu" ;;
+    "sk_SK") SELECT_KEYBOARD="$keyboardMessageSk" ;;
+    "sl_SI") SELECT_KEYBOARD="$keyboardMessageSl" ;;
+    "es_AR") SELECT_KEYBOARD="$keyboardMessageEsAr" ;;
+    "es_BO") SELECT_KEYBOARD="$keyboardMessageEsBo" ;;
+    "es_CL") SELECT_KEYBOARD="$keyboardMessageEsCl" ;;
+    "es_CO") SELECT_KEYBOARD="$keyboardMessageEsCo" ;;
+    "es_CR") SELECT_KEYBOARD="$keyboardMessageEsCr" ;;
+    "es_DO") SELECT_KEYBOARD="$keyboardMessageEsDo" ;;
+    "es_EC") SELECT_KEYBOARD="$keyboardMessageEsEc" ;;
+    "es_SV") SELECT_KEYBOARD="$keyboardMessageEsSv" ;;
+    "es_GT") SELECT_KEYBOARD="$keyboardMessageEsGt" ;;
+    "es_HN") SELECT_KEYBOARD="$keyboardMessageEsHn" ;;
+    "es_MX") SELECT_KEYBOARD="$keyboardMessageEsMx" ;;
+    "es_NI") SELECT_KEYBOARD="$keyboardMessageEsNi" ;;
+    "es_PA") SELECT_KEYBOARD="$keyboardMessageEsPa" ;;
+    "es_PY") SELECT_KEYBOARD="$keyboardMessageEsPy" ;;
+    "es_PE") SELECT_KEYBOARD="$keyboardMessageEsPe" ;;
+    "es_PR") SELECT_KEYBOARD="$keyboardMessageEsPr" ;;
+    "es_UY") SELECT_KEYBOARD="$keyboardMessageEsUy" ;;
+    "es_VE") SELECT_KEYBOARD="$keyboardMessageEsVe" ;;
+    "sv_SE") SELECT_KEYBOARD="$keyboardMessageSv" ;;
+    "sv_FI") SELECT_KEYBOARD="$keyboardMessageSvFi" ;;
+    "tr_TR") SELECT_KEYBOARD="$keyboardMessageTr" ;;
+    "uk_UA") SELECT_KEYBOARD="$keyboardMessageUk" ;;
+    *) SELECT_KEYBOARD="$keyboardMessageEn" ;;  # Default to English
+esac
+
+# Generate HTML content
+cat << EOF
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Project configuration -->
+    <script>
+        const projectName = 'biglinux-livecd';
+    </script>
+    
+    <!-- Include generic header -->
+    $(cat /usr/share/bigbashview/framework/html/genericHeader.html)
+    
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <title>$SELECT_KEYBOARD</title>
+</head>
+<body x-data="navigation()">
+    <!-- Top navigation bar -->
+    <nav class="center-align top-bar padding">
+        <i class="icon-menu icon-static" id="language-icon">language_chinese_dayi</i>
+        <img class="logo-image" src="/usr/share/bigbashview/apps/livecd/icon-logo-community.png" alt="Community Logo">
+        <i class="icon-menu icon-fade" id="keyboard-icon">keyboard</i>
+    </nav>
+
+    <!-- Main content -->
+    <div class="center-align">
+        <h5 class="small center-align large-margin large-padding">$SELECT_KEYBOARD</h5>
+        
+        <!-- Keyboard layout options -->
+        <a href="desktop.sh.htm?keyboard=$keyboard" id="link1">
+            <button class="tertiary margin large" id="button1">${keyboard^^}</button>
+        </a>
+        <a href="desktop.sh.htm?keyboard=$keyboard2" id="link2">
+            <button class="tertiary margin large" id="button2">$keyboard2_display</button>
+        </a>
+        
+        <!-- Keyboard layout image -->
+        <p><img src="keyboard.svg" width="256" alt="Keyboard Layout"></p>
+    </div>
+    
+    <!-- Keyboard navigation script -->
+    <script>
+        function navigation() {
+            return {
+                currentFocus: 0,
+                links: ['link1', 'link2'],
+                
+                // Initialize navigation
+                init() {
+                    this.highlightCurrent();
+                    
+                    window.addEventListener('keydown', (event) => {
+                        if (event.key === 'ArrowLeft') {
+                            event.preventDefault();
+                            this.moveFocus(1);
+                        } else if (event.key === 'ArrowRight') {
+                            event.preventDefault();
+                            this.moveFocus(-1);
+                        } else if (event.key === 'Enter') {
+                            event.preventDefault();
+                            this.activateLink();
+                        }
+                    });
+                },
+                
+                // Handle focus movement
+                moveFocus(step) {
+                    this.removeHighlight();
+                    this.currentFocus = (this.currentFocus + step + this.links.length) % this.links.length;
+                    this.highlightCurrent();
+                },
+                
+                // Highlight current selection
+                highlightCurrent() {
+                    const currentElement = document.getElementById(this.links[this.currentFocus]).querySelector('button');
+                    currentElement.focus();
+                    currentElement.classList.add('highlight');
+                },
+                
+                // Remove highlight from current selection
+                removeHighlight() {
+                    const currentElement = document.getElementById(this.links[this.currentFocus]).querySelector('button');
+                    currentElement.classList.remove('highlight');
+                },
+                
+                // Activate selected link
+                activateLink() {
+                    document.getElementById(this.links[this.currentFocus]).click();
+                }
+            }
+        }
+    </script>
+    
+    <!-- Icon initialization script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageIcon = document.getElementById('language-icon');
+            const keyboardIcon = document.getElementById('keyboard-icon');
+            
+            languageIcon.classList.add('icon-static');
+            keyboardIcon.classList.add('icon-fade');
+        });
+    </script>
+</body>
+</html>
+EOF
