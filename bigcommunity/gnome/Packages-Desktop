@@ -20,13 +20,6 @@ adobe-source-sans-pro-fonts
 cantarell-fonts # Installed as gnome-themes-standard dependency
 noto-fonts-lite # New default font
 noto-nerd-fonts-lite
-# terminus-font
-# ttf-caladea
-# ttf-carlito
-# ttf-dejavu
-# ttf-fira-code
-# ttf-icomoon-feather
-# ttf-liberation
 ttf-roboto
 ttf-roboto-mono
 ttf-roboto-slab
@@ -68,7 +61,7 @@ gnome-weather
 loupe
 malcontent
 mutter
-nautilus
+nautilus-with-terminal
 nautilus-admin
 nautilus-empty-file
 nautilus-image-converter
@@ -79,12 +72,15 @@ python-nautilus
 rygel
 simple-scan
 #sushi
-sync-gnome-theme-to-qt # Pacote Biglinux
+sync-gnome-theme-to-qt # Package Biglinux
 tracker3-miners
 xdg-user-dirs-gtk
 
 # Community extra config
 custom-tweaks
+
+# Apps BigLinux
+big-video-converter
 
 # GNOME Shell Extensions
 gnome-shell-extension-arc-menu
@@ -295,4 +291,3 @@ mtpfs
 rustdesk-bin
 steam
 udiskie
-# llvm16-libs
