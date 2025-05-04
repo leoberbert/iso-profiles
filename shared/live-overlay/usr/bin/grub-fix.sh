@@ -5,7 +5,7 @@
 
 sed -i "s|GRUB_CMDLINE_LINUX_DEFAULT='|GRUB_CMDLINE_LINUX_DEFAULT='$(sed 's|BOOT_IMAGE=/boot/vmlinuz-x86_64 ||g;s| driver=nonfree||g;s| driver=free||g;s| rdinit=/vtoy/vtoy||g;s| quiet splash||g' /proc/cmdline) |g" $*
 
-sed -i 's|BOOT_IMAGE=/boot/vmlinuz-x86_64||g;s|misobasedir=manjaro misolabel=BIGLINUXLIVE ||g' $*
+sed -i 's|BOOT_IMAGE=/boot/vmlinuz-x86_64||g;s|misobasedir=bigcommunity misolabel=BIGCOMMUNITYLIVE ||g' $*
 
 sed -i 's|GRUB_THEME=.*|GRUB_THEME="/boot/grub/themes/community/theme.txt"|g' $*
 
