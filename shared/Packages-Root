@@ -133,6 +133,7 @@ grub-btrfs-timeshift
 grub-btrfs
 big-first-boot
 plymouth-theme-community
+sbctl
 update-grub
 
 ## Tweaks
@@ -152,6 +153,7 @@ auto-unlock-pacman-git
 hunspell-pt-br
 uresourced
 bigsudo
+udev-usb-sync
 
 ## Sound/Audio/Video
 biglinux-meta-audio-config
