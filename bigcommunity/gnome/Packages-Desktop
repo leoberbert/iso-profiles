@@ -243,7 +243,7 @@ usbtinyisp-udev
 
 # Utilities
 comm-gnome-config
-comm-settings-gnome
+#comm-settings-gnome
 comm-wallpapers-gnome
 ds4-disable-led
 retroarch-tweaks
