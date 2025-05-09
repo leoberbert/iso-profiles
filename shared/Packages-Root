@@ -57,7 +57,7 @@ lvm2
 make
 #manjaro-firmware
 manjaro-keyring
-manjaro-release
+community-release
 manjaro-system
 manjaro-tools-base
 mdadm
