@@ -154,6 +154,7 @@ aria2
 auto-tweaks-browser
 bigcontrolcenter
 big-executable
+big-video-converter
 big-preload
 big-skel
 biglinux-mime
@@ -184,7 +185,7 @@ libva-intel-driver
 libva-mesa-driver
 #llvm16-libs
 mtools
-mystiq
+#mystiq
 numlockx
 openucx
 open-in-lutris-git
