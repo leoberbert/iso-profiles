@@ -242,6 +242,7 @@ usbasp-udev
 usbtinyisp-udev
 
 # Utilities
+gdm-settings
 comm-gnome-config
 #comm-settings-gnome
 comm-wallpapers-gnome
