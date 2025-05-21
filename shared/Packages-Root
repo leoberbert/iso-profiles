@@ -46,6 +46,7 @@ iproute2
 iputils
 irqbalance
 jfsutils
+jq
 KERNEL
 KERNEL-headers
 less
