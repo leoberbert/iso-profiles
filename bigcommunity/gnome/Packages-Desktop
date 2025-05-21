@@ -162,6 +162,7 @@ bigocrpdf
 dmidecode # for inxi -m output
 espeak-ng
 gdm
+gdm-settings
 htop
 inxi
 libappindicator-gtk3
