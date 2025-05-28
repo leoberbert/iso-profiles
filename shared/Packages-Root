@@ -16,7 +16,7 @@ cpupower
 cronie
 cryptsetup
 device-mapper
-dhclient
+#dhclient
 dhcpcd
 diffutils
 dmraid
@@ -176,7 +176,6 @@ manjaro-pipewire
 pipewire-jack
 wireplumber
 chmlib
-tesseract-data-spa
 
 ## Support
 sshx
@@ -202,5 +201,5 @@ spice-vdagent
 fastfetch
 webp-pixbuf-loader
 
-# para testes
+# Localization
 glibc-locales

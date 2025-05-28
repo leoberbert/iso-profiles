@@ -94,7 +94,7 @@ gnome-shell-extension-pano
 gnome-shell-extensions
 
 # Input Devices
-xf86-input-elographics
+#xf86-input-elographics
 xf86-input-evdev
 xf86-input-synaptics
 xf86-input-vmmouse
@@ -139,10 +139,8 @@ networkmanager-pptp
 networkmanager-vpnc
 nss-mdns # NSS support for mDNS (optdepend for avahi)
 ntp
-open-vm-tools
 openresolv
 openssh
-qemu-guest-agent
 sysctl-network
 usb_modeswitch
 
@@ -203,7 +201,6 @@ splix
 system-config-printer
 system-config-printer-jobs
 thermald
-virtualbox-guest-utils
 
 # Themes and Icons
 comm-shell-orchis
