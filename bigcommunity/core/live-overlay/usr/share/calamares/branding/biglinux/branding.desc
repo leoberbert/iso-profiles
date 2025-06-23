@@ -1,0 +1,34 @@
+---
+componentName:           biglinux
+welcomeStyleCalamares:   true
+welcomeExpandingLogo:    true
+windowSize:         1024px,735px
+
+
+strings:
+    productName:         BigCommunity
+    shortProductName:    BigCommunity
+    version:             1
+    shortVersion:        1
+    versionedName:       BigCommunity
+    shortVersionedName:  BigCommunity
+    bootloaderEntryName: BigCommunity
+    productUrl:          https://communitybig.org
+    supportUrl:          https://communitybig.org
+    releaseNotesUrl:     https://communitybig.org
+
+images:
+    productLogo:         "logo.svg"
+    productIcon:         "/usr/share/icons/hicolor/scalable/apps/icon-big-hd-install.svg"
+    productWelcome:      "big-welcome.svg"
+
+slideshow:               "pac-biglinux.qml"
+slideshowAPI:            1
+
+style:
+   SidebarBackground:    "#31363b"
+   SidebarText:          "#ffffff"
+   SidebarTextSelect:    "#00ffff"
+   SidebarTextHighlight: "#00ff00"
+
+sidebar: qml

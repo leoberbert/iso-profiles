@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=BigCommunity Installer
+Comment=Starts a minimal session to run the installer
+Exec=/usr/bin/start-calamares-session
+Type=Application
+Icon=calamares

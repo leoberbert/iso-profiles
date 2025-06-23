@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Inicia um gerenciador de janelas leve em segundo plano
+openbox &
+
+# Painel para o applet de rede e um menu básico
+tint2 &
+
+# Applet de rede
+nm-applet --indicator &
+
+# Inicia o Calamares com permissões de root
+# O -d é para modo de debug, útil durante o desenvolvimento
+sudo -E /usr/bin/calamares -d
+
+# Quando o Calamares for fechado, o sistema será desligado.
+# Pode ser trocado por um menu de logout se preferir.
+systemctl poweroff

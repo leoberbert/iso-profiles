@@ -1,0 +1,5 @@
+# Utilitários base que toda instalação deve ter
+bash-completion
+htop
+inxi
+vim
