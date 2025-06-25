@@ -23,7 +23,6 @@ network-manager-applet
 nm-connection-editor
 ocs-url
 papers
-pavucontrol
 playerctl
 pix
 simplescreenrecorder
@@ -336,3 +335,4 @@ biglinux-grub-restore
 memtest86+
 memtest86+-efi
 community-livecd-key
+-jack2
