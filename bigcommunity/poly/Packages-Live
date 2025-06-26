@@ -271,7 +271,7 @@ steam
 udiskie
 # llvm16-libs
 # Packages Core
-comm-calamares
+calamares
 gparted
 grub-theme-live-manjaro
 manjaro-live-systemd
