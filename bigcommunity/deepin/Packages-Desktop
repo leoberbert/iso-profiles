@@ -192,6 +192,7 @@ usb_modeswitch
 
 # Utilities
 #comm-dde-config
+jamesdsp
 
 ds4-disable-led
 retroarch-tweaks
