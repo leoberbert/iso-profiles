@@ -2,6 +2,7 @@
 blueberry
 big-video-converter # App Biglinux
 catfish
+celluloid
 comm-xfce-datetime
 exo
 ffmpegthumbnailer
@@ -35,7 +36,6 @@ thunar-shares-plugin
 thunar-volman
 thunarx-python
 tumbler
-vlc
 xed
 xfce4-appfinder
 xfce4-artwork
