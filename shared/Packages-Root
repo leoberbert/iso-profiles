@@ -94,6 +94,7 @@ systemd-sysvcompat
 tar
 texinfo
 tree
+unzip
 usbutils
 util-linux
 vi
