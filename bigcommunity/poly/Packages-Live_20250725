@@ -54,12 +54,12 @@ gnome-terminal
 nemo
 nemo-audio-tab
 nemo-emblems
-#nemo-image-converter
+nemo-image-converter
 nemo-fileroller
 #nemo-pastebin
 nemo-preview
 nemo-python
-#nemo-seahorse
+nemo-seahorse
 #nemo-share
 nemo-terminal
 pavucontrol
@@ -119,8 +119,8 @@ modemmanager
 network-manager-disable-random-mac
 network-manager-prefer-ipv4-dns
 networkmanager-openvpn
-#networkmanager-pptp
-#networkmanager-vpnc
+networkmanager-pptp
+networkmanager-vpnc
 nss-mdns # NSS support for mDNS (optdepend for avahi)
 ntp
 openresolv
@@ -135,7 +135,7 @@ usb_modeswitch
 >extra python-pillow
 >extra python-pip
 >extra python-pyqt5
-#appimagelauncher
+appimagelauncher
 appmenu-gtk-module
 auto-tweaks-browser # Pacote Biglinux
 biglinux-mime
@@ -249,7 +249,7 @@ libmspack
 
 # Additional Packages
 fatresize
-#gamemode
+gamemode
 grilo-plugins
 gvfs
 #gvfs-afc
