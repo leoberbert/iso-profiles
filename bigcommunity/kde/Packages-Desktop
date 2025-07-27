@@ -5,7 +5,6 @@ libqaccessibilityclient-qt6
 android-tools
 
 # App Launchers
-appimagelauncher
 appmenu-gtk-module
 
 # Audio Tools

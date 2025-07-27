@@ -148,7 +148,6 @@ git
 >extra python-pillow
 >extra python-pip
 >extra python-pyqt5
-appimagelauncher
 appmenu-gtk-module
 auto-tweaks-browser # Pacote Biglinux
 biglinux-mime
