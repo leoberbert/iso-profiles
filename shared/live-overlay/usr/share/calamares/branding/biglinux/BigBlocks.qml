@@ -1,6 +1,6 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Shapes 1.15
+import QtQuick 6.5
+import QtQuick.Controls 6.5
+import QtQuick.Shapes 6.5
 
 Item {
     id: root
@@ -674,6 +674,17 @@ Item {
         color: "#0a0e27"
         visible: true
         z: 100
+
+        // Click area to start game
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                if (startScreen.visible) {
+                    resetGame();
+                }
+            }
+            cursorShape: Qt.PointingHandCursor
+        }
         
         Column {
             anchors.centerIn: parent
@@ -808,7 +819,7 @@ Item {
             
             // Start button
             Text {
-                text: "Press ENTER to Start"
+                text: "Click to Start"
                 font.pixelSize: 24
                 font.family: "monospace"
                 color: "lime"
@@ -1578,6 +1589,6 @@ Item {
     }
     
     Component.onCompleted: {
-        console.log("Linux Stack Master v" + gameVersion + " loaded successfully");
+        console.log("Big Blocks v" + gameVersion + " loaded successfully");
     }
 }
