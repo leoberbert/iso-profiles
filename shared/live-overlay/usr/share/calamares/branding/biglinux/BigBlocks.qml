@@ -4,8 +4,8 @@ import QtQuick.Shapes 6.5
 
 Item {
     id: root
-    width: 800
-    height: 600
+    width: Math.max(700, parent ? parent.width : 700)
+    height: Math.max(600, parent ? parent.height : 600)
     focus: true
     
     // Game constants
@@ -13,7 +13,7 @@ Item {
     readonly property string gameName: "Big Blocks"
     readonly property int gridWidth: 10
     readonly property int gridHeight: 20
-    readonly property int cellSize: Math.min((height - 100) / gridHeight, 25)
+    readonly property int cellSize: Math.max(25, Math.min((height - 100) / gridHeight, 35))
     readonly property int boardWidth: gridWidth * cellSize
     readonly property int boardHeight: gridHeight * cellSize
     readonly property int previewSize: 4
@@ -55,6 +55,15 @@ Item {
     
     // Statistics
     property var stats: ({
+        pieces: 0,
+        perfect: 0,
+        combos: 0,
+        maxCombo: 0,
+        superUses: 0
+    })
+
+    // Session stats - persist during game
+    property var sessionStats: ({
         pieces: 0,
         perfect: 0,
         combos: 0,
@@ -137,8 +146,8 @@ Item {
     // Game container to center both panels
     Item {
         id: gameContainer
-        width: boardWidth + 250 + 120  // gameBoard + sidePanel + spacing
-        height: boardHeight
+        width: Math.min(boardWidth + 250 + 120, root.width - 40)
+        height: Math.min(boardHeight, root.height - 80)
         anchors.centerIn: parent
     
         // Main game board
@@ -675,7 +684,7 @@ Item {
         visible: true
         z: 100
 
-        // Click area to start game
+        // Click area to start game - Calamares
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -685,6 +694,7 @@ Item {
             }
             cursorShape: Qt.PointingHandCursor
         }
+
         
         Column {
             anchors.centerIn: parent
@@ -722,8 +732,8 @@ Item {
             
             // Instructions
             Rectangle {
-                width: 500
-                height: 300
+                width: Math.min(500, root.width - 100)
+                height: Math.min(300, root.height * 0.4)
                 color: Qt.rgba(0, 0, 0, 0.5)
                 border.color: "#333"
                 radius: 10
@@ -772,7 +782,7 @@ Item {
             
             // Distro showcase
             Rectangle {
-                width: 500
+                width: Math.min(500, root.width - 100)
                 height: 80
                 color: Qt.rgba(0, 0, 0, 0.5)
                 border.color: "#333"
@@ -817,7 +827,7 @@ Item {
                 }
             }
             
-            // Start button
+            // Start button - Calamares
             Text {
                 text: "Click to Start"
                 font.pixelSize: 24
@@ -865,8 +875,8 @@ Item {
             
             // Current stats
             Rectangle {
-                width: 300
-                height: 200
+                width: Math.min(300, root.width - 100)
+                height: Math.min(200, root.height * 0.3)
                 color: Qt.rgba(0, 0, 0, 0.5)
                 border.color: "#333"
                 radius: 10
@@ -890,16 +900,16 @@ Item {
                         anchors.horizontalCenter: parent.horizontalCenter
                         
                         Text { text: "Pieces:"; color: "#888"; font.family: "monospace" }
-                        Text { text: stats.pieces; color: "white"; font.family: "monospace" }
-                        
+                        Text { text: sessionStats.pieces; color: "white"; font.family: "monospace" }
+
                         Text { text: "Perfect Clears:"; color: "#888"; font.family: "monospace" }
-                        Text { text: stats.perfect; color: "white"; font.family: "monospace" }
-                        
+                        Text { text: sessionStats.perfect; color: "white"; font.family: "monospace" }
+
                         Text { text: "Max Combo:"; color: "#888"; font.family: "monospace" }
-                        Text { text: stats.maxCombo; color: "white"; font.family: "monospace" }
-                        
+                        Text { text: sessionStats.maxCombo; color: "white"; font.family: "monospace" }
+
                         Text { text: "Super Uses:"; color: "#888"; font.family: "monospace" }
-                        Text { text: stats.superUses; color: "white"; font.family: "monospace" }
+                        Text { text: sessionStats.superUses; color: "white"; font.family: "monospace" }
                     }
                 }
             }
@@ -929,8 +939,8 @@ Item {
             
             // Final stats
             Rectangle {
-                width: 350
-                height: 200
+                width: Math.min(350, root.width - 100)
+                height: Math.min(200, root.height * 0.3)
                 color: Qt.rgba(0, 0, 0, 0.5)
                 border.color: "#333"
                 radius: 10
@@ -986,7 +996,7 @@ Item {
                         Text { text: linesCleared; color: "white"; font.family: "monospace" }
                         
                         Text { text: "Max Combo:"; color: "#888"; font.family: "monospace" }
-                        Text { text: stats.maxCombo; color: "white"; font.family: "monospace" }
+                        Text { text: sessionStats.maxCombo; color: "white"; font.family: "monospace" }
                     }
                 }
             }
@@ -1112,6 +1122,10 @@ Item {
             }
             grid.push(row);
         }
+
+        // Save current high score before reset
+        var savedHighScore = highScore;
+        console.log("DEBUG - InitGame - Saving highScore:", savedHighScore);
         
         // Reset game state
         score = 0;
@@ -1123,6 +1137,10 @@ Item {
         superModeActive = false;
         holdPiece = -1;
         holdUsed = false;
+
+        // Restore high score
+        highScore = savedHighScore;
+        console.log("DEBUG - InitGame - HighScore restored to:", highScore);
         
         // Reset stats
         stats.pieces = 0;
@@ -1130,6 +1148,13 @@ Item {
         stats.combos = 0;
         stats.maxCombo = 0;
         stats.superUses = 0;
+
+        // Reset session stats
+        sessionStats.pieces = 0;
+        sessionStats.perfect = 0;
+        sessionStats.combos = 0;
+        sessionStats.maxCombo = 0;
+        sessionStats.superUses = 0;
         
         // Initialize piece queue
         nextPieces = [];
@@ -1185,6 +1210,10 @@ Item {
         updateGhostPosition();
         
         stats.pieces++;
+        sessionStats.pieces++;
+
+        // Force QML binding update for sessionStats
+        sessionStats = Object.assign({}, sessionStats);
     }
     
     function moveLeft() {
@@ -1297,7 +1326,7 @@ Item {
     }
     
     function placePiece() {
-        var pieceType = nextPieces[0];
+        var pieceType = currentPieceType;
         
         // Place piece on grid
         for (var py = 0; py < currentPiece.length; py++) {
@@ -1334,6 +1363,11 @@ Item {
             if (combo > stats.maxCombo) {
                 stats.maxCombo = combo;
             }
+            if (combo > sessionStats.maxCombo) {
+                sessionStats.maxCombo = combo;
+                // Force QML binding update for sessionStats
+                sessionStats = Object.assign({}, sessionStats);
+            }
             
             // Charge BigLinux power
             bigLinuxPower = Math.min(bigLinuxPower + lines.length * 15, maxBigLinuxPower);
@@ -1349,6 +1383,9 @@ Item {
             if (isGridEmpty()) {
                 score += 1000 * level;
                 stats.perfect++;
+                sessionStats.perfect++;
+                // Force QML binding update for sessionStats
+                sessionStats = Object.assign({}, sessionStats);
                 showFloatingText(gameBoard.x + gameBoard.width / 2,
                                gameBoard.y + gameBoard.height / 2,
                                "PERFECT CLEAR!",
@@ -1442,6 +1479,9 @@ Item {
         superModeActive = true;
         superModeTime = 180; // 3 seconds at 60 FPS
         stats.superUses++;
+        sessionStats.superUses++;
+        // Force QML binding update for sessionStats
+        sessionStats = Object.assign({}, sessionStats);
         
         // Clear bottom 3 lines
         for (var i = 0; i < 3; i++) {
@@ -1529,8 +1569,10 @@ Item {
         gameRunning = false;
         gameOver = true;
         
+        console.log("DEBUG - EndGame - Current score:", score, "Current highScore:", highScore);
         if (score > highScore) {
             highScore = score;
+            console.log("DEBUG - New high score set:", highScore);
         }
         
         gameOverScreen.visible = true;
