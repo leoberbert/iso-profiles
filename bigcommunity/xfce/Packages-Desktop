@@ -66,7 +66,7 @@ xfce4-settings
 xfce4-smartbookmark-plugin
 xfce4-systemload-plugin
 xfce4-taskmanager
-xfce4-terminal
+#xfce4-terminal
 xfce4-time-out-plugin
 xfce4-timer-plugin
 xfce4-verve-plugin
@@ -80,10 +80,14 @@ xfwm4
 xfwm4-themes
 xarchiver
 
+# Comm Apps
+ashyterm
+
 # Games
-gnuchess
-gnome-mines
 aisleriot
+bigblocks
+gnome-mines
+gnome-mahjongg
 
 # Browsers
 brave-browser

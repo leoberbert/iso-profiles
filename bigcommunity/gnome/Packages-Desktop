@@ -41,7 +41,7 @@ gnome-characters
 gnome-clocks
 gnome-color-manager
 gnome-connections
-gnome-console
+#gnome-console
 gnome-contacts
 gnome-control-center
 gnome-disk-utility
@@ -79,8 +79,17 @@ xdg-user-dirs-gtk
 # Community extra config
 custom-tweaks
 
+# Comm Apps
+ashyterm
+
 # Apps BigLinux
 big-video-converter
+
+# Games
+aisleriot
+bigblocks
+gnome-mines
+gnome-mahjongg
 
 # GNOME Shell Extensions
 gnome-shell-extension-arc-menu
