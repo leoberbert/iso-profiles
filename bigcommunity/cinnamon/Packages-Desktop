@@ -49,7 +49,7 @@ gnome-keyring
 gnome-online-accounts-gtk
 gnome-screenshot
 gnome-system-monitor
-gnome-terminal
+#gnome-terminal
 gpaste
 nemo
 nemo-audio-tab
@@ -76,6 +76,15 @@ xapp-jxl-thumbnailer
 xapp-thumbnailers-common
 xdg-user-dirs-gtk
 xed
+
+# Comm Apps
+ashyterm
+
+# Games
+aisleriot
+bigblocks
+gnome-mines
+gnome-mahjongg
 
 # Input Devices
 xf86-input-elographics
@@ -269,4 +278,3 @@ mtpfs
 rustdesk-bin
 steam
 udiskie
-# llvm16-libs
