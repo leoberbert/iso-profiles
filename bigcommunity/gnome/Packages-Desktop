@@ -52,7 +52,7 @@ gnome-network-displays
 gnome-online-accounts
 gnome-remote-desktop
 gnome-session
-gnome-system-monitor
+#gnome-system-monitor
 gnome-text-editor
 gnome-tweaks
 gnome-user-share
@@ -69,6 +69,7 @@ nautilus-share
 papers
 power-profiles-daemon
 python-nautilus
+resources
 rygel
 simple-scan
 #sushi
