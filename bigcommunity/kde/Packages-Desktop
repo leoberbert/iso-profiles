@@ -24,7 +24,6 @@ ark
 # Development Tools
 autoconf
 automake
-make
 kdsoap-ws-discovery-client
 ktexttemplate
 python-pygdbmi
@@ -128,7 +127,6 @@ ntp
 openresolv
 rustdesk-bin
 sshfs
-switcheroo-control
 
 # Package Managers
 mintstick
@@ -136,7 +134,6 @@ pamac-cli
 pamac-flatpak-plugin
 pamac-tray-icon-plasma
 pamac-updates-menu
-pacman-cleancache
 packagekit-qt6
 rpmtoarch
 rpm-sequoia
@@ -154,7 +151,6 @@ auto-tweaks-browser
 bigcontrolcenter
 big-executable
 big-video-converter
-big-preload
 big-skel
 biglinux-mime
 biglinux-themes-gui
@@ -166,7 +162,6 @@ cryfs
 debtap-mod
 ds4-disable-led
 extra-biglinux-wallpapers
-faster-mkinitcpio
 fatresize
 flatpak-kcm
 gconf
@@ -188,7 +183,6 @@ mtools
 numlockx
 openucx
 open-in-lutris-git
-open-vm-tools
 perl-file-mimeinfo
 powertop
 python-steam
@@ -204,7 +198,6 @@ udiskie
 unarchiver
 uriparser
 usb_modeswitch
-virtualbox-guest-utils
 wacomtablet
 xdg-user-dirs-gtk
 zensu
@@ -235,14 +228,9 @@ usb-dirty-pages-udev
 usbasp-udev
 usbtinyisp-udev
 
-# Virtualization Tools
-qemu-guest-agent
-virtualbox-guest-utils
-
 # Xorg Input Drivers
 xf86-input-elographics
 xf86-input-evdev
-xf86-input-synaptics
 xf86-input-vmmouse
 
 # Xorg Tools
@@ -311,7 +299,6 @@ lib32-sdl12-compat
 lib32-v4l-utils
 lutris
 mtpfs
-nvtop
 plasma-framework5
 plasma-wayland-protocols
 source-highlight

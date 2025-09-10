@@ -4,7 +4,6 @@ brave-browser
 # Development Tools
 autoconf
 automake
-make
 
 # Fonts
 >extra noto-fonts-emoji

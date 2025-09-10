@@ -7,7 +7,6 @@ amd-ucode
 archlinux-keyring
 aspell-pt
 b43-fwcutter
-# bash
 bash-completion
 btrfs-progs
 bzip2
@@ -16,7 +15,6 @@ cpupower
 cronie
 cryptsetup
 device-mapper
-#dhclient
 dhcpcd
 diffutils
 dmraid
@@ -24,6 +22,7 @@ dnsmasq
 dosfstools
 e2fsprogs
 ecryptfs-utils
+edk2-shell
 efibootmgr
 exfatprogs
 f2fs-tools
@@ -53,10 +52,10 @@ less
 licenses
 lib32-ocl-icd
 lib32-vkd3d
+linux-atm
 logrotate
 lvm2
 make
-#manjaro-firmware
 manjaro-keyring
 community-release
 manjaro-system
@@ -68,6 +67,7 @@ mkinitcpio-openswap
 nano
 nfs-utils
 ntfs-3g
+nvme-cli
 ocl-icd
 os-prober
 pacman
@@ -118,12 +118,12 @@ biglinux-driver-manager
 biglinux-nano-config
 biglinux-vim-config
 big-preload
+biglinux-hibernate-in-swapfile-btrfs
 
 ### COMMUNITY
 community-keyring
 
 ## Visual/theme
-bigicons-papient
 biglinux-base-icons
 biglinux-apps-rename
 biglinux-metapackage
@@ -159,7 +159,6 @@ udev-usb-sync
 
 ## Sound/Audio/Video
 biglinux-meta-audio-config
-pipewire-jack-dropin
 biglinux-noise-reduction-pipewire
 alsa-firmware
 alsa-utils
@@ -173,24 +172,47 @@ gst-plugins-ugly
 libcanberra
 libcanberra-pulse
 libdvdcss
-manjaro-pipewire
+pipewire
+pipewire-alsa
+pipewire-ffado # FireWire/IEEE 1394 audio
+pipewire-libcamera
+pipewire-pulse
 pipewire-jack
+pipewire-v4l2
 wireplumber
 chmlib
 
 ## Support
 sshx
 
+
 ## Video and Driver Support
-biglinux-vaapi
-libva-intel-driver
-libva-mesa-driver
-mesa-vdpau
 mhwd-biglinux
-switcheroo-control
-vulkan-intel
+biglinux-vaapi
+libxvmc
+lib32-mesa-vdpau
+lib32-vulkan-intel
+lib32-vulkan-radeon
+lib32-vulkan-swrast
+lib32-vulkan-mesa-layers
+lib32-vulkan-nouveau
+libva-nvidia-driver
+vpl-gpu-rt # Hardware accelerated video on newer Intel GPUs
+mesa-vdpau
 vulkan-mesa-layers
+vulkan-intel
+vulkan-nouveau
 vulkan-radeon
+vulkan-tools
+vulkan-swrast
+xf86-video-amdgpu
+xf86-video-ati
+xf86-video-intel
+xf86-video-nouveau
+nvtop
+switcheroo-control
+xf86-input-synaptics
+alsa-oss
 
 ## Virtualization Support
 open-vm-tools
@@ -204,3 +226,8 @@ webp-pixbuf-loader
 
 # Localization
 glibc-locales
+
+#Hardware
+acsccid # ACS CCID smart card readers
+bmusb # Specialty video capture/playback boxes from BlackMagicDesign
+ccid # Generic USB CCID/ICCD card readers
