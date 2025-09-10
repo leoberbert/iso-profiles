@@ -80,7 +80,6 @@ brave-browser
 # Development Tools
 autoconf
 automake
-make
 
 # Fonts
 >extra noto-fonts-emoji
@@ -152,7 +151,6 @@ splix
 system-config-printer
 system-config-printer-jobs
 thermald
-virtualbox-guest-utils
 
 # Themes and Icons
 qadwaitadecorations-qt6
@@ -160,15 +158,12 @@ bigicons-papient
 qt6-svg
 
 ## Virtual Machines
-open-vm-tools
-qemu-guest-agent
 libdnet
 gdk-pixbuf-xlib
 uriparser
 libmspack
 xf86-input-vmmouse
 compsize
-xf86-input-synaptics
 mtools
 fatresize
 ipp-usb
@@ -182,10 +177,8 @@ networkmanager-pptp
 networkmanager-vpnc
 nss-mdns # NSS support for mDNS (optdepend for avahi)
 ntp
-open-vm-tools
 openresolv
 openssh
-qemu-guest-agent
 sysctl-network
 usb_modeswitch
 
@@ -199,20 +192,6 @@ retroarch-tweaks
 # Virtualization
 bluez-utils
 sshfs  # remote filesystem browser
-
-# Xorg
-# numlockx
-# xorg-mkfontscale
-# xorg-server
-# xorg-twm
-# xorg-xinit
-# xorg-xkill
-
-# Input Devices
-# xf86-input-elographics
-# xf86-input-evdev
-# xf86-input-synaptics
-# xf86-input-vmmouse
 
 # Udev Rules
 adafruit-boards-udev

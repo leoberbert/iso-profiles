@@ -77,7 +77,6 @@ brave-browser
 # Development Tools
 autoconf
 automake
-make
 
 # Fonts
 >extra noto-fonts-emoji
@@ -134,13 +133,11 @@ comm-wallpapers-hyprland
 comm-hyprland-config
 ds4-disable-led
 retroarch-tweaks
-fastfetch
 ark
 imagemagick
 ffmpegthumbs
 libnotify
 udiskie
-biglinux-vim-config
 kate
 git
 
@@ -197,7 +194,6 @@ splix
 system-config-printer
 system-config-printer-jobs
 thermald
-virtualbox-guest-utils
 
 # Wayland
 #wayland-protocols
@@ -234,15 +230,12 @@ steam
 udiskie
 
 ## Virtual Machines
-open-vm-tools
-qemu-guest-agent
 libdnet
 gdk-pixbuf-xlib
 uriparser
 libmspack
 xf86-input-vmmouse
 compsize
-xf86-input-synaptics
 mtools
 fatresize
 thermald
@@ -256,10 +249,8 @@ networkmanager-pptp
 networkmanager-vpnc
 nss-mdns # NSS support for mDNS (optdepend for avahi)
 ntp
-open-vm-tools
 openresolv
 openssh
-qemu-guest-agent
 sysctl-network
 usb_modeswitch
 

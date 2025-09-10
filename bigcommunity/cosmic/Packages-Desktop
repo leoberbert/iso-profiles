@@ -4,7 +4,6 @@ brave-browser
 # Development Tools
 autoconf
 automake
-make
 
 # Fonts
 >extra noto-fonts-emoji
@@ -59,7 +58,6 @@ simple-scan
 # Input Devices
 xf86-input-elographics
 xf86-input-evdev
-xf86-input-synaptics
 xf86-input-vmmouse
 
 # Multilib
@@ -102,10 +100,8 @@ networkmanager-pptp
 networkmanager-vpnc
 nss-mdns # NSS support for mDNS (optdepend for avahi)
 ntp
-open-vm-tools
 openresolv
 openssh
-qemu-guest-agent
 sysctl-network
 usb_modeswitch
 
@@ -162,7 +158,6 @@ splix
 system-config-printer
 system-config-printer-jobs
 thermald
-virtualbox-guest-utils
 
 # Themes and Icons
 bibata-cursor-theme
