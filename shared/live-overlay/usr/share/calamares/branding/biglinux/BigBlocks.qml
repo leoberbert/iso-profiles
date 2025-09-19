@@ -1,11 +1,12 @@
 import QtQuick 6.5
 import QtQuick.Controls 6.5
 import QtQuick.Shapes 6.5
+import Qt.labs.settings 1.0
 
 Item {
     id: root
     width: Math.max(700, parent ? parent.width : 700)
-    height: Math.max(600, parent ? parent.height : 600)
+    height: Math.max(700, parent ? parent.height : 700)
     focus: true
     
     // Game constants
@@ -20,7 +21,7 @@ Item {
     
     // Game state
     property int score: 0
-    property int highScore: 0
+    property var topScores: [0, 0, 0, 0, 0]  // Top 5 scores
     property int level: 1
     property int linesCleared: 0
     property int combo: 0
@@ -104,6 +105,40 @@ Item {
     property var particles: []
     property var explosions: []
     property var floatingTexts: []
+
+    // Settings for persistence
+    Settings {
+        id: gameSettings
+        property alias savedTopScores: root.topScores
+    }
+
+    function loadTopScores() {
+        if (gameSettings.savedTopScores && gameSettings.savedTopScores.length === 5) {
+            topScores = gameSettings.savedTopScores;
+        }
+    }
+
+    function saveTopScores() {
+        gameSettings.savedTopScores = topScores;
+    }
+
+    function updateTopScores(newScore) {
+        var newTopScores = topScores.slice();
+        
+        // Find position to insert new score
+        for (var i = 0; i < 5; i++) {
+            if (newScore > newTopScores[i]) {
+                // Insert new score and shift others down
+                newTopScores.splice(i, 0, newScore);
+                newTopScores = newTopScores.slice(0, 5); // Keep only top 5
+                break;
+            }
+        }
+        
+        topScores = newTopScores;
+        saveTopScores();
+        return i < 5; // Return true if score made it to top 5
+    }
     
     // Background
     Rectangle {
@@ -630,17 +665,17 @@ Item {
             anchors.centerIn: parent
             spacing: 50
             
-            // High Score
+            // Best Score
             Row {
                 spacing: 10
                 Text {
-                    text: "HIGH:"
+                    text: "BEST:"
                     color: "#888"
                     font.pixelSize: 16
                     font.family: "monospace"
                 }
                 Text {
-                    text: highScore.toString().padStart(8, '0')
+                    text: topScores[0].toString().padStart(8, '0')
                     color: "#FFD700"
                     font.pixelSize: 16
                     font.bold: true
@@ -684,7 +719,7 @@ Item {
         visible: true
         z: 100
 
-        // Click area to start game - Calamares
+        // Click area to start game
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -694,7 +729,6 @@ Item {
             }
             cursorShape: Qt.PointingHandCursor
         }
-
         
         Column {
             anchors.centerIn: parent
@@ -733,7 +767,7 @@ Item {
             // Instructions
             Rectangle {
                 width: Math.min(500, root.width - 100)
-                height: Math.min(300, root.height * 0.4)
+                height: Math.min(290, root.height * 0.5)
                 color: Qt.rgba(0, 0, 0, 0.5)
                 border.color: "#333"
                 radius: 10
@@ -775,7 +809,10 @@ Item {
                         Text { text: "Spacebar (when charged)"; color: "#FFD700"; font.family: "monospace" }
                         
                         Text { text: "Pause:"; color: "#888"; font.family: "monospace" }
-                        Text { text: "P or ESC"; color: "white"; font.family: "monospace" }
+                        Text { text: "P"; color: "white"; font.family: "monospace" }
+
+                        Text { text: "Top Scores:"; color: "#888"; font.family: "monospace" }
+                        Text { text: "T Key"; color: "white"; font.family: "monospace" }
                     }
                 }
             }
@@ -827,7 +864,7 @@ Item {
                 }
             }
             
-            // Start button - Calamares
+            // Start button
             Text {
                 text: "Click to Start"
                 font.pixelSize: 24
@@ -866,7 +903,7 @@ Item {
             }
             
             Text {
-                text: "Press P or ESC to Continue"
+                text: "Press P to Continue"
                 font.pixelSize: 18
                 font.family: "monospace"
                 color: "#888"
@@ -940,7 +977,7 @@ Item {
             // Final stats
             Rectangle {
                 width: Math.min(350, root.width - 100)
-                height: Math.min(200, root.height * 0.3)
+                height: Math.min(250, root.height * 0.4)
                 color: Qt.rgba(0, 0, 0, 0.5)
                 border.color: "#333"
                 radius: 10
@@ -968,13 +1005,21 @@ Item {
                     }
                     
                     Text {
-                        text: score > highScore ? "NEW HIGH SCORE!" : ""
+                        text: {
+                            for (var i = 0; i < 5; i++) {
+                                if (score === topScores[i]) {
+                                    if (i === 0) return "NEW BEST SCORE!";
+                                    return "TOP " + (i + 1) + " SCORE!";
+                                }
+                            }
+                            return "";
+                        }
                         color: "gold"
                         font.pixelSize: 20
                         font.bold: true
                         font.family: "monospace"
                         anchors.horizontalCenter: parent.horizontalCenter
-                        visible: score > highScore
+                        visible: text !== ""
                         
                         SequentialAnimation on scale {
                             running: visible
@@ -1013,6 +1058,67 @@ Item {
                     NumberAnimation { to: 0.3; duration: 800 }
                     NumberAnimation { to: 1.0; duration: 800 }
                 }
+            }
+        }
+    }
+
+    // Top 5 Scores screen
+    Rectangle {
+        id: topScoresScreen
+        anchors.fill: parent
+        color: Qt.rgba(0, 0, 0, 0.9)
+        visible: false
+        z: 101
+        
+        Column {
+            anchors.centerIn: parent
+            spacing: 30
+            
+            Text {
+                text: "TOP 5 SCORES"
+                font.pixelSize: 36
+                font.bold: true
+                font.family: "monospace"
+                color: "#FFD700"
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            
+            Column {
+                spacing: 15
+                anchors.horizontalCenter: parent.horizontalCenter
+                
+                Repeater {
+                    model: 5
+                    
+                    Row {
+                        spacing: 20
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        
+                        Text {
+                            text: "#" + (index + 1)
+                            color: index === 0 ? "#FFD700" : index === 1 ? "#C0C0C0" : index === 2 ? "#CD7F32" : "#888"
+                            font.pixelSize: 24
+                            font.bold: true
+                            font.family: "monospace"
+                            width: 50
+                        }
+                        
+                        Text {
+                            text: topScores[index].toString().padStart(8, '0')
+                            color: "white"
+                            font.pixelSize: 24
+                            font.family: "monospace"
+                        }
+                    }
+                }
+            }
+            
+            Text {
+                text: "Press ESC to return"
+                font.pixelSize: 16
+                font.family: "monospace"
+                color: "#888"
+                anchors.horizontalCenter: parent.horizontalCenter
             }
         }
     }
@@ -1088,7 +1194,7 @@ Item {
         interval: dropSpeed
         running: gameRunning && !gamePaused
         repeat: true
-        onTriggered: moveDown()
+        onTriggered: moveDownAuto()
     }
     
     // Animation timer
@@ -1122,10 +1228,6 @@ Item {
             }
             grid.push(row);
         }
-
-        // Save current high score before reset
-        var savedHighScore = highScore;
-        console.log("DEBUG - InitGame - Saving highScore:", savedHighScore);
         
         // Reset game state
         score = 0;
@@ -1137,10 +1239,6 @@ Item {
         superModeActive = false;
         holdPiece = -1;
         holdUsed = false;
-
-        // Restore high score
-        highScore = savedHighScore;
-        console.log("DEBUG - InitGame - HighScore restored to:", highScore);
         
         // Reset stats
         stats.pieces = 0;
@@ -1231,6 +1329,17 @@ Item {
     }
     
     function moveDown() {
+        if (isValidPosition(currentX, currentY + 1, currentPiece)) {
+            currentY++;
+            return true;
+        } else {
+            placePiece();
+            return false;
+        }
+    }
+
+    // Automatic movement
+    function moveDownAuto() {
         if (isValidPosition(currentX, currentY + 1, currentPiece)) {
             currentY++;
             return true;
@@ -1569,11 +1678,9 @@ Item {
         gameRunning = false;
         gameOver = true;
         
-        console.log("DEBUG - EndGame - Current score:", score, "Current highScore:", highScore);
-        if (score > highScore) {
-            highScore = score;
-            console.log("DEBUG - New high score set:", highScore);
-        }
+        console.log("DEBUG - EndGame - Current score:", score);
+        var madeTopFive = updateTopScores(score);
+        console.log("DEBUG - Made top 5:", madeTopFive);
         
         gameOverScreen.visible = true;
     }
@@ -1586,9 +1693,15 @@ Item {
     
     // Input handling
     Keys.onPressed: {
-        if (startScreen.visible) {
+        if (topScoresScreen.visible) {
+            if (event.key === Qt.Key_Escape) {
+                topScoresScreen.visible = false;
+            }
+        } else if (startScreen.visible) {
             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
                 resetGame();
+            } else if (event.key === Qt.Key_T) {
+                topScoresScreen.visible = true;
             }
         } else if (gameOverScreen.visible) {
             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
@@ -1596,8 +1709,10 @@ Item {
                 gameOverScreen.visible = false;
             }
         } else if (gameRunning) {
-            if (event.key === Qt.Key_P || event.key === Qt.Key_Escape) {
+            if (event.key === Qt.Key_P) {
                 gamePaused = !gamePaused;
+            } else if (event.key === Qt.Key_T) {
+                topScoresScreen.visible = true;
             } else if (!gamePaused) {
                 switch (event.key) {
                     case Qt.Key_Left:
@@ -1630,7 +1745,10 @@ Item {
         }
     }
     
+    // Load scores on startup
     Component.onCompleted: {
         console.log("Big Blocks v" + gameVersion + " loaded successfully");
+        loadTopScores();
+        forceActiveFocus();
     }
 }
