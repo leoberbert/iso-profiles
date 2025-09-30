@@ -80,6 +80,9 @@ xdg-user-dirs-gtk
 # Community extra config
 custom-tweaks
 
+# Change Default Terminal
+xdg-terminal-exec
+
 # Comm Apps
 ashyterm
 

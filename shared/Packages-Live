@@ -11,3 +11,4 @@ biglinux-grub-restore
 memtest86+
 memtest86+-efi
 community-livecd-key
+xdg-terminal-exec
