@@ -75,6 +75,9 @@ xapp-thumbnailers-common
 xdg-user-dirs-gtk
 xed
 
+# Change Default Terminal
+xdg-terminal-exec
+
 # Comm Apps
 ashyterm
 

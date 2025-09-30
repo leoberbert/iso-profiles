@@ -80,6 +80,9 @@ xfwm4
 xfwm4-themes
 xarchiver
 
+# Change Default Terminal
+xdg-terminal-exec
+
 # Comm Apps
 ashyterm
 
