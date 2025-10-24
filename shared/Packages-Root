@@ -188,7 +188,6 @@ sshx
 
 
 ## Video and Driver Support
-#mhwd-biglinux
 mhwd-biglinux-debug
 biglinux-vaapi
 libxvmc
