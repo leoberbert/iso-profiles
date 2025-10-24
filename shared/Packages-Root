@@ -188,7 +188,8 @@ sshx
 
 
 ## Video and Driver Support
-mhwd-biglinux
+#mhwd-biglinux
+mhwd-biglinux-debug
 biglinux-vaapi
 libxvmc
 lib32-mesa-vdpau
