@@ -26,7 +26,7 @@ edk2-shell
 efibootmgr
 exfatprogs
 f2fs-tools
-fd
+#fd
 file
 filesystem
 findutils
