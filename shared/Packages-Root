@@ -26,7 +26,7 @@ edk2-shell
 efibootmgr
 exfatprogs
 f2fs-tools
-#fd
+fd
 file
 filesystem
 findutils
@@ -189,7 +189,7 @@ sshx
 
 
 ## Video and Driver Support
-#mhwd-biglinux
+mhwd-biglinux
 biglinux-vaapi
 libxvmc
 lib32-mesa-vdpau

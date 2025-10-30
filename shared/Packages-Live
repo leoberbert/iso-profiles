@@ -1,6 +1,7 @@
 calamares
 gparted
 grub-theme-live-manjaro
+manjaro-live-skel
 manjaro-live-systemd
 mkinitcpio-nfs-utils
 nbd
@@ -12,3 +13,4 @@ memtest86+
 memtest86+-efi
 community-livecd-key
 xdg-terminal-exec
+qefientrymanager
