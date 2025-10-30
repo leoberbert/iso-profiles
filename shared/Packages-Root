@@ -54,6 +54,7 @@ licenses
 lib32-ocl-icd
 lib32-vkd3d
 linux-atm
+linux-firmware
 logrotate
 lvm2
 make
