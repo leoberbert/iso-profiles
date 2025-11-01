@@ -78,7 +78,7 @@ tracker3-miners
 xdg-user-dirs-gtk
 
 # Community extra config
-custom-tweaks
+#custom-tweaks
 luminance
 # Change Default Terminal
 xdg-terminal-exec
