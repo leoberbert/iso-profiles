@@ -1,4 +1,3 @@
-# Browsers
 brave-browser
 
 # Development Tools
@@ -279,6 +278,7 @@ libdnet
 gdk-pixbuf-xlib
 uriparser
 libmspack
+ffmpegthumbnailer # show video preview in file manager
 
 # Additional Packages
 fatresize
